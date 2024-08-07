@@ -31,7 +31,7 @@
 }
 
 .main {
-  background-image: url("/src/pic/bj.jpg");
+  background-image: url("./pic/bj.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -178,15 +178,16 @@
 
 .download {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   cursor: pointer;
   z-index: 1000;
+  font-size: 8px;
 }
 
 .red {

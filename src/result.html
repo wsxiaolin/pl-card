@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-    <button class="download" onclick="exportToJPG()">Export as JPE</button>
+    <button class="download" onclick="exportToJPG()">导出为图片</button>
 
     <script>
       function getUrlParameter(name) {
@@ -93,7 +93,7 @@
           fetchUserData: async function () {
             try {
               const response = await fetch(
-                `https://79rfz2-3000.csb.app/api/user/${getUrlParameter(
+                `/api/user/${getUrlParameter(
                   "data"
                 )}`
               );
@@ -113,7 +113,7 @@
           getAvatarUrl: function (id, num) {
             return id == undefined
               ? `/src/pic/avatar.jpg`
-              : `https://79rfz2-3000.csb.app/api/avatar/${id}/${num}`;
+              : `/api/avatar/${id}/${num}`;
           },
           getExperienceForLevel: function (level) {
             return level * (level + 1) * 100;

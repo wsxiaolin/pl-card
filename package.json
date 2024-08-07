@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "physics-lab-web-api": "^0.4.1"
+  }
+}
