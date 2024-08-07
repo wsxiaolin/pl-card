@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>物实卡片</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        width: 300px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+      }
+      input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>物实卡个人片</h2>
+      <form action="./result.html" method="GET">
+        <input type="text" name="data" placeholder="请输入内容" />
+        <br /><br />
+        <input type="submit" value="提交" />
+      </form>
+    </div>
+  </body>
+</html>

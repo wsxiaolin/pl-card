@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人信息</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./lib/vue2.min.js"></script>
+    <script src="./lib/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div id="loader"></div>
+
+      <div class="card">
+        <div class="name">{{ user.Nickname }}</div>
+        <hr />
+        <div class="summary show">
+          <div class="ribbon">{{ user.Verification }}</div>
+          <div class="info">
+            <div class="left">
+              <div
+                class="avatar"
+                :style="{ backgroundImage: 'url(' + getAvatarUrl(user.ID,user.Avatar) + ')' }"
+              ></div>
+              <div class="text">
+                精选:{{ user.Prestige }}
+
+                <span v-for="(fire, index) in fires" :key="index">
+                  <i
+                    :class="['icon-fire', fire.color]"
+                    v-if="fire.color === 'normal' || fire.color === 'yellow'"
+                  ></i>
+                  <i
+                    :class="['icon-fire', fire.color]"
+                    v-if="fire.color === 'red' && user.Prestige > 20"
+                  ></i>
+                </span>
+              </div>
+            </div>
+            <div class="right">
+              <div class="xp">
+                <div class="text">经验：</div>
+                <div class="wrapper">
+                  <progress
+                    class="progress"
+                    :value="user.Experience"
+                    :max="getExperienceForLevel(user.Level + 1)"
+                  />
+                  <div class="number">
+                    lv{{ user.Level }}：{{ user.Experience }}/{{
+                    getExperienceForLevel(user.Level + 1) }}
+                  </div>
+                </div>
+              </div>
+              <div class="list">
+                <div class="item">作品：{{ statistic.CommentCount }}</div>
+                <div class="item">获赞：{{ statistic.StarCount }}</div>
+                <div class="item">关注：{{ statistic.FollowingCount }}</div>
+                <div class="item">粉丝：{{ statistic.FollowerCount }}</div>
+                <div class="item">金币：{{ user.Gold }}</div>
+                <div class="item">钻石：{{ user.Diamond }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="signature">
+            <div class="text">{{ user.Signature }}</div>
+            <div class="from">——来自签名</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="download" onclick="exportToJPG()">Export as JPE</button>
+
+    <script>
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      document.querySelector(".card").style.display = "none";
+      new Vue({
+        el: "#app",
+        data: {
+          user: {},
+          statistic: {},
+        },
+        methods: {
+          fetchUserData: async function () {
+            try {
+              const response = await fetch(
+                `https://79rfz2-3000.csb.app/api/user/${getUrlParameter(
+                  "data"
+                )}`
+              );
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const data = await response.json();
+              this.user = data.User;
+              this.statistic = data.Statistic;
+              document.querySelector(".card").style.display = "block";
+              document.querySelector("#loader").style.display = "none";
+            } catch (e) {
+              console.error(e);
+              alert("服务器通信失败");
+            }
+          },
+          getAvatarUrl: function (id, num) {
+            return id == undefined
+              ? `/src/pic/avatar.jpg`
+              : `https://79rfz2-3000.csb.app/api/avatar/${id}/${num}`;
+          },
+          getExperienceForLevel: function (level) {
+            return level * (level + 1) * 100;
+          },
+        },
+        mounted() {
+          this.fetchUserData();
+        },
+        computed: {
+          fires() {
+            let count = this.user.Prestige;
+            let result = [];
+
+            if (count >= 1 && count <= 9) {
+              for (let i = 1; i <= count; i += 3) {
+                result.push({ color: "normal", index: i });
+              }
+            } else if (count >= 10 && count <= 24) {
+              for (let i = 10; i <= count; i += 5) {
+                result.push({ color: "yellow", index: i });
+              }
+            } else {
+              for (let i = 25; i <= count && i < 40; i += 5) {
+                result.push({ color: "red", index: i });
+              }
+            }
+
+            return result;
+          },
+        },
+      });
+    </script>
+
+    <script>
+      function exportToJPG() {
+        const element = document.querySelector(".main");
+        html2canvas(element, { scale: 4 }).then((canvas) => {
+          const exportCanvas = document.createElement("canvas");
+          exportCanvas.width = canvas.width;
+          exportCanvas.height = canvas.height;
+          const ctx = exportCanvas.getContext("2d");
+          ctx.drawImage(canvas, 0, 0);
+          const dataURL = exportCanvas.toDataURL("image/jpeg", 1);
+          const link = document.createElement("a");
+          link.href = dataURL;
+          link.download = "usercard.jpg";
+          link.click();
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,277 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("./fonts/icomoon.eot?9lh8zk");
+  src: url("./fonts/icomoon.eot?9lh8zk#iefix") format("embedded-opentype"),
+    url("./fonts/icomoon.ttf?9lh8zk") format("truetype"),
+    url("./fonts/icomoon.woff?9lh8zk") format("woff"),
+    url("./fonts/icomoon.svg?9lh8zk#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fire:before {
+  content: "\e9a9";
+}
+
+.main {
+  background-image: url("/src/pic/bj.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  backdrop-filter: blur(5px) brightness(90%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  height: 240px;
+  width: 400px;
+  position: relative;
+  padding: 0px 10px;
+}
+
+.ribbon {
+  position: absolute;
+  top: 14px;
+  right: -10px;
+  background-color: #57dd43;
+  color: #fff;
+  font-size: 9px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.card .name {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.card .show {
+  display: block !important;
+}
+
+.summary {
+  display: none;
+}
+
+.info {
+  display: flex;
+  margin-top: 20px;
+}
+
+.info .left {
+  flex: 1;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 10px;
+  align-items: center;
+}
+
+.info .left .avatar {
+  width: 88px;
+  height: 93px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.info .left .text {
+  height: 20px;
+  width: 90px;
+  margin-bottom: -20px;
+  font-size: 12px;
+}
+
+.info .right {
+  width: 100%;
+  flex: 2;
+  margin: 0 10px;
+}
+
+.info .right .xp {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+.info .right .xp .text {
+  font-size: 14px;
+  width: 40px;
+  white-space: nowrap;
+}
+
+.info .right .xp .wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.info .right .xp .wrapper .number {
+  position: absolute;
+  right: 1px;
+  bottom: -10px;
+  font-size: 10px;
+}
+
+.info .right .xp .wrapper .progress {
+  width: 100%;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 10px;
+}
+
+.list .item {
+  font-size: 14px;
+}
+
+.signature {
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  margin: 20px 10px;
+  width: 100%;
+  font-style: italic;
+}
+
+.signature .text {
+  display: block;
+  padding-left: 20%;
+  color: #666;
+}
+
+.signature .from {
+  position: absolute;
+  width: 80px;
+  bottom: -5px;
+  right: 40px;
+  font-size: 12px;
+}
+
+.download {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+#loader {
+  position: relative;
+  width: 175px;
+  height: 80px;
+  background-image: radial-gradient(
+      circle 25px at 25px 25px,
+      #00afee 100%,
+      transparent 0
+    ),
+    radial-gradient(circle 50px at 50px 50px, #00afee 100%, transparent 0),
+    radial-gradient(circle 25px at 25px 25px, #00afee 100%, transparent 0),
+    linear-gradient(#00afee 50px, transparent 0);
+  background-size: 50px 50px, 100px 76px, 50px 50px, 120px 40px;
+  background-position: 0px 30px, 37px 0px, 122px 30px, 25px 40px;
+  background-repeat: no-repeat;
+}
+#loader::before {
+  content: "";
+  position: absolute;
+  left: 60px;
+  bottom: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #90cf5b;
+  background-image: radial-gradient(
+      circle 8px at 18px 18px,
+      #00afee 100%,
+      transparent 0
+    ),
+    radial-gradient(circle 4px at 18px 0px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 0px 18px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 36px 18px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 18px 36px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 30px 5px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 30px 5px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 30px 30px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 5px 30px, #00afee 100%, transparent 0),
+    radial-gradient(circle 4px at 5px 5px, #00afee 100%, transparent 0);
+  background-repeat: no-repeat;
+  -webkit-animation: rotationBack 3s linear infinite;
+  animation: rotationBack 3s linear infinite;
+}
+#loader::after {
+  content: "";
+  left: 94px;
+  bottom: 15px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #90cf5b;
+  background-image: radial-gradient(
+      circle 5px at 12px 12px,
+      #00afee 100%,
+      transparent 0
+    ),
+    radial-gradient(circle 2.5px at 12px 0px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 0px 12px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 24px 12px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 12px 24px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 20px 3px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 20px 3px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 20px 20px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 3px 20px, #00afee 100%, transparent 0),
+    radial-gradient(circle 2.5px at 3px 3px, #00afee 100%, transparent 0);
+  background-repeat: no-repeat;
+  animation: rotationBack 4s linear infinite reverse;
+}
